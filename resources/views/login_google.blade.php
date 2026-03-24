@@ -132,7 +132,7 @@
             })
             .then(res => res.json())
             .then(data => {
-                if (data.ok) { window.location.href = "/index_estudiante"; }
+                if (data.ok) { window.location.href = "/index_director"; }
                 else { alert("Error: " + (data.error || "Token inválido")); }
             })
             .catch(error => console.error("Error:", error));

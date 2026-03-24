@@ -113,7 +113,7 @@
         <div class="dropdown">
             <a class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="me-2 fw-bold text-end lh-sm">
-                    {{ Auth::user()->name ?? 'Directora / Director' }} <br>
+                    <?=session('nombre')?><br>
                     <small class="text-muted fw-normal">Perfil Administrativo</small>
                 </span>
                 <i class="bi bi-person-circle fs-2 text-secondary"></i>
