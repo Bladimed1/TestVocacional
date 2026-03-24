@@ -18,6 +18,9 @@ return new class extends Migration
             $table->String('apellidoMaterno');
             $table->String('correo');
             $table->String('matricula');
+            $table->tinyInteger('cuatrimestre');
+            $table->unsignedBigInteger('id_especialidad'); 
+            $table->foreign('id_especialidad')->references('id')->on('especialidades')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -49,6 +49,12 @@ class LoginController extends Controller
 
         return response()->json(['ok' => false], 401);
     }
+
+    public function logout () {
+        session()->forget('email');
+        session()->forget('nombre');
+        return view ('login_google');
+    }
 }
 
 
