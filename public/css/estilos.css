@@ -1,0 +1,130 @@
+/* Definición del color institucional */
+:root {
+    --verde-uth: #008A4B;
+    --verde-hover: #006b3a;
+}
+
+/* Fondo con ondas (Deberás exportar las ondas desde Figma como PNG o SVG) */
+body.fondo-ondas {
+    background-color: #f8fafc;
+    background-image: url('../img/fondo-ondas.png'); 
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Modificadores para las tarjetas principales */
+.tarjeta-custom {
+    border: 1px solid #f1f5f9;
+    border-radius: 2rem !important; /* Replicando las esquinas muy redondeadas del Figma */
+    background-color: rgba(255, 255, 255, 0.95); /* Ligeramente transparente para que luzca el fondo */
+}
+
+/* Botones principales */
+.btn-verde-uth {
+    background-color: var(--verde-uth);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-verde-uth:hover {
+    background-color: var(--verde-hover);
+    color: white;
+    transform: scale(1.02);
+}
+
+/* Cursor decorativo flotante */
+.cursor-flotante {
+    position: absolute;
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    pointer-events: none;
+}
+
+/* Efecto de galería traslapada en la parte inferior */
+.img-central {
+    height: 280px;
+    width: auto;
+    object-fit: cover;
+    border: 6px solid var(--verde-uth);
+    margin: 0 -30px; /* Esto hace que se encime sobre las imágenes laterales */
+    border-radius: 1rem;
+}
+
+.img-lateral {
+    height: 200px;
+    width: auto;
+    object-fit: cover;
+    border: 4px solid #80c4a5;
+    opacity: 0.85;
+    border-radius: 1rem;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+/* ... (mantén lo que ya tenías de --verde-uth, .fondo-ondas, etc.) ... */
+
+/* Marca de agua (La brújula de fondo) */
+.bg-brujula {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 600px;
+    opacity: 0.05; /* Muy tenue para no estorbar la lectura */
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Tarjetas Administrativas (Las de arriba) */
+.tarjeta-admin {
+    border: none;
+    border-radius: 1.5rem !important;
+    background-color: rgba(255, 255, 255, 0.98);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-admin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+}
+
+/* Títulos en mayúsculas de las tarjetas */
+.texto-destacado {
+    letter-spacing: 0.5px;
+    color: #1a1a1a;
+}
+
+/* Tarjetas de Especialidades (Las 3 de abajo) */
+.tarjeta-especialidad {
+    border: 2px solid #e2e8f0;
+    border-radius: 1rem !important;
+    height: 100%;
+}
+
+.tarjeta-especialidad .card-header {
+    background-color: transparent;
+    border-bottom: 2px solid #f1f5f9;
+    padding-top: 1.5rem;
+    position: relative;
+}
+
+/* Icono flotante en la esquina de las tarjetas */
+.icono-flotante-top {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: white;
+    padding: 0 10px;
+    color: var(--verde-uth);
+    font-size: 2rem;
+}
+
+/* Línea del footer */
+.footer-linea {
+    border-top: 3px solid var(--verde-uth);
+    width: 80%;
+    margin: 0 auto;
+}
