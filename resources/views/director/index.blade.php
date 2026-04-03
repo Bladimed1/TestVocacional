@@ -18,7 +18,7 @@
         <div class="container-fluid d-flex justify-content-between align-items-center">
             
             <div class="d-flex align-items-center gap-3">
-                <img src="{{ asset('img/uth-logo.png') }}" alt="Logo UTH" height="50">
+                <img src="{{ asset('img/uth-logo.png') }}" alt="Logo UTH" height="100">
                 <div class="vr mx-2 text-secondary" style="width: 2px;"></div>
                 <h1 class="h5 mb-0 fw-bold text-dark d-none d-md-block">Plataforma de Orientación Vocacional - UTH</h1>
             </div>
@@ -51,23 +51,11 @@
                         <h2 class="fw-bolder texto-destacado h3 mb-2">¡Analice Tendencias Académicas!</h2>
                         <p class="text-dark fw-medium mb-4">Visualice métricas clave y participación de los estudiantes.</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn btn-verde-uth fw-bold px-4 py-2 d-inline-flex align-items-center gap-2 rounded-3">
+                            <a href="{{ route('director.estadisticas') }}" class="btn btn-verde-uth fw-bold px-4 py-2 d-inline-flex align-items-center gap-2 rounded-3 text-decoration-none">
                                 <i class="bi bi-bar-chart-fill"></i> VER ESTADÍSTICAS GENERALES
-                            </button>
+                            </a>
                             <i class="bi bi-graph-up-arrow text-success fs-1 opacity-50"></i>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-8 col-lg-7">
-                <div class="card tarjeta-admin shadow-sm p-3">
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <div>
-                            <h2 class="fw-bolder texto-destacado h3 mb-2 text-uppercase text-success">¡Gestión de Especialidades!</h2>
-                            <p class="text-dark fw-medium mb-0">Supervise y actualice el contenido informativo de las trayectorias de TI.</p>
-                        </div>
-                        <i class="bi bi-gear-fill text-success" style="font-size: 3rem;"></i>
                     </div>
                 </div>
             </div>
