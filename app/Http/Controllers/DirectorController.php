@@ -14,7 +14,7 @@ class DirectorController extends Controller
     {
         // 1. Simulamos los resultados de los test (después esto vendrá de Adminer/MySQL)
         $resultados = [
-            'Software' => 145,
+            'Desarrollo de Software' => 145,
             'Redes y Ciberseguridad' => 98,
             'Entornos Virtuales' => 112
         ];

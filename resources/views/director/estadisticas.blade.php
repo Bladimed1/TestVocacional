@@ -70,7 +70,7 @@
             // Alimentamos Google Charts con tus datos del controlador de Laravel
             var data = google.visualization.arrayToDataTable([
                 ['Especialidad', 'Número de Aspirantes'],
-                ['Desarrollo de Software',  {{ $resultados['Software'] }}],
+                ['Desarrollo de Software',  {{ $resultados['Desarrollo de Software'] }}],
                 ['Redes y Ciberseguridad',  {{ $resultados['Redes y Ciberseguridad'] }}],
                 ['Entornos Virtuales',      {{ $resultados['Entornos Virtuales'] }}]
             ]);
