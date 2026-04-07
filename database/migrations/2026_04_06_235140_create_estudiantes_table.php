@@ -21,6 +21,7 @@ return new class extends Migration
             $table->tinyInteger('cuatrimestre');
             $table->String('grupo');
             $table->boolean('estatus')->default(true);
+            $table->tinyInteger('intentos');
             $table->unsignedBigInteger('id_especialidad'); 
             $table->foreign('id_especialidad')->references('id')->on('especialidades')->onDelete('cascade');
             $table->timestamps();
