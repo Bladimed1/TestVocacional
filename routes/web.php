@@ -11,6 +11,7 @@ Route::get('/director', [DirectorController::class, 'index'])->name('director.in
 
 Route::get('estadisticas', [DirectorController::class, 'estadisticas'])->name('director.estadisticas');
 
+
 Route::get('/login', [LoginController::class, 'login']);
 Route::post('/auth_g', [LoginController::class, 'auth']);
 
