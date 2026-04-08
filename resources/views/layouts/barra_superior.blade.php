@@ -24,9 +24,9 @@
         <div class="container-fluid d-flex justify-content-between align-items-center">
             
             <div class="d-flex align-items-center gap-3">
-                <img src="{{ asset('img/uth-logo.png') }}" alt="Logo UTH" height="100">
+                <img src="{{ asset('img/uth-logo.png') }}" alt="Logo UTH" height="180">
                 <div class="vr mx-2 text-secondary" style="width: 2px;"></div>
-                <h1 class="h5 mb-0 fw-bold text-dark d-none d-md-block">Plataforma de Orientación Vocacional - UTH</h1>
+                <h1 class="h3 mb-0 fw-bold text-dark d-none d-md-block">Plataforma de Orientación Vocacional - UTH</h1>
             </div>
             
             @if(session()->has('email'))

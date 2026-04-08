@@ -63,7 +63,16 @@ class EstudianteController extends Controller
         //
     }
 
-    /*public function menu() {
-        return view('estudiante.index');
-    }*/
+    public function testJson() {
+        // GET request básico
+        $response = Http::get('https://franciscoagm-trabajos.com/consumibles_test/preguntas.json');
+
+        if ($response->successful()) {
+            $data = $response->json();
+
+            return view ('estudiante.test', compact('data'));
+        }
+
+        return back()->withError('Error al obtener datos');
+    }
 }
