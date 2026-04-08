@@ -10,6 +10,7 @@ use App\Http\Controllers\EstudianteController;
 Route::get('/director', [DirectorController::class, 'index'])->name('director.index');
 
 
+
 Route::get('/login', [LoginController::class, 'login']);
 Route::post('/auth_g', [LoginController::class, 'auth']);
 
