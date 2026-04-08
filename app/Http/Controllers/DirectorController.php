@@ -10,6 +10,7 @@ class DirectorController extends Controller
         return view('director.index');
     }
 
+    //Función provisional para presentar como se verían los datos dentro de la gráfica
     public function estadisticas()
     {
         // 1. Simulamos los resultados de los test (después esto vendrá de Adminer/MySQL)
@@ -25,5 +26,15 @@ class DirectorController extends Controller
 
         // 3. Enviamos todos estos datos a la nueva vista
         return view('director.estadisticas', compact('resultados', 'especialidadTop', 'maxDemanda'));
+    }
+
+    public function grupo($grupo)
+    {
+        return view('director.grupo', compact('grupo'));
+    }
+
+    public function alumnos()
+    {
+        return view('director.alumnos');
     }
 }
