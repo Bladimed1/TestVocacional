@@ -17,13 +17,10 @@
                     </div>
                 </div>
 
-                <h2 class="fw-bolder text-success mb-3 px-2">Bienvenido al Test Vocacional de Especialidad</h2>
-                <p class="text-secondary mb-4 fw-medium px-4">Ingresa con tu cuenta institucional para realizar tu evaluación vocacional.</p>
+                <h2 class="fw-bolder text-success mb-3 px-2">Bienvenido</h2>
+                <p class="text-secondary mb-4 fw-medium px-4">Ingresa con tu correo institucional</p>
 
                 <div class="p-5 bg-light rounded-4 border border-secondary border-opacity-10 shadow-sm my-4 mx-2 mx-sm-4">
-                    <h6 class="text-uppercase fw-bold text-success mb-4" style="letter-spacing: 1px; font-size: 0.95rem;">
-                        ACCESO DE ESTUDIANTES
-                    </h6>
 
                     <div class="d-flex flex-column align-items-center justify-content-center">
                         <div id="g_id_onload"
