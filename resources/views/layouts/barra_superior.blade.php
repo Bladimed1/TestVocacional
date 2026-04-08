@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,6 +7,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/barra_superior.css') }}">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -15,54 +16,60 @@
     @stack('styles')
 </head>
 
-<body>
+<body class="fondo-ondas position-relative bg-light">
 
-    <header class="navbar-uth d-flex align-items-center justify-content-between shadow-sm">
-        <div class="d-flex align-items-center">
-            <img src="{{ asset('img/uthLogo.png') }}" alt="Logo UTH" class="logo-uth">
-            <h3 class="m-0 fw-bold header-title">Plataforma de Orientación Vocacional - UTH</h3>
+    <img src="{{ asset('img/brujula-bg.png') }}" class="bg-brujula" alt="">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3 py-2 position-relative z-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <div class="d-flex align-items-center gap-3">
+                <img src="{{ asset('img/uth-logo.png') }}" alt="Logo UTH" height="100">
+                <div class="vr mx-2 text-secondary" style="width: 2px;"></div>
+                <h1 class="h5 mb-0 fw-bold text-dark d-none d-md-block">Plataforma de Orientación Vocacional - UTH</h1>
+            </div>
+            
+            @if(session()->has('email'))
+            <div class="dropdown">
+                <button class="btn btn-light bg-white border-0 dropdown-toggle d-flex align-items-center gap-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    
+                    <i class="bi bi-person-circle text-secondary" style="font-size: 2.5rem;"></i>
+                    
+                    <div class="text-start d-none d-sm-block">
+                        <span class="fw-bold text-dark d-block" style="font-size: 0.95rem;">{{ session('nombre') }}</span>
+                        <span class="text-secondary d-block text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">USUARIO ACTIVO</span>
+                    </div>
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown">
+                    <li>
+                        <a class="dropdown-item py-2 fw-semibold" href="/configuracion">
+                            <i class="bi bi-gear-fill me-2"></i> Configuración
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item py-2 fw-semibold text-danger">
+                                <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            @endif
+
         </div>
-
-        @if(session()->has('email'))
-        <div class="dropdown">
-            <a class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle gap-2"
-               href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="fw-bold text-end lh-sm">
-                    <?=session('nombre')?>
-                </span>
-                <i class="bi bi-person-circle fs-2 text-secondary"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
-                <li>
-                    <a class="dropdown-item" href="/configuracion">
-                        <i class="bi bi-gear me-2"></i> Configuración
-                    </a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-
-                <li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="dropdown-item text-danger">
-                            <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
-                        </button>
-                    </form>
-                </li>
-
-            </ul>
-        </div>
-        @endif
-
-    </header>
-
-    <main class="container flex-grow-1 my-4">
+    </nav>
+    <main class="container position-relative z-2 my-4 flex-grow-1">
         @yield('content')
     </main>
 
-    <footer class="mt-auto pb-4">
+    <footer class="mt-auto py-4 text-center position-relative z-2">
         <div class="container text-center">
-            <div class="footer-line mx-auto w-75"></div>
-            <p class="text-muted mb-0 small">&copy; {{ date('Y') }} Plataforma de Orientación Vocacional - UTH</p>
+            <div class="footer-linea mb-3 mx-auto" style="max-width: 2000px;"></div>
+            <p class="text-secondary fw-semibold mb-0 small">&copy; {{ date('Y') }} Plataforma de Orientación Vocacional - UTH</p>
         </div>
     </footer>
 
