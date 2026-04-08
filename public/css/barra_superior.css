@@ -1,0 +1,135 @@
+:root {
+    --uth-green: #009640;
+    --uth-light-bg: #f8faf9;
+}
+
+/* ─── Base ─────────────────────────────────────── */
+body {
+    background-color: var(--uth-light-bg);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(0, 150, 64, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 150, 64, 0.05) 0%, transparent 20%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ─── Header ────────────────────────────────────── */
+.navbar-uth {
+    background: white;
+    border-bottom: 4px solid #ddd;
+    padding: 1rem 2rem;
+}
+
+.logo-uth {
+    height: 150px;
+    border-right: 2px solid #ccc;
+    padding-right: 20px;
+    margin-right: 20px;
+}
+
+.header-title {
+    color: #333;
+}
+
+/* ─── Tarjetas de menú ──────────────────────────── */
+.menu-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border-left: 5px solid transparent;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 150, 64, 0.15);
+    border-left: 5px solid var(--uth-green);
+    color: inherit;
+}
+
+.menu-title {
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #212529;
+}
+
+.menu-description {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ─── Botones ───────────────────────────────────── */
+.btn-uth {
+    background-color: var(--uth-green);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-uth:hover {
+    background-color: #007d35;
+    color: white;
+}
+
+/* ─── Imagen central ────────────────────────────── */
+.image-container {
+    border: 4px solid var(--uth-green);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 150, 64, 0.1);
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 400px;
+}
+
+/* ─── Tarjeta login ─────────────────────────────── */
+.main-card {
+    border: 2px solid var(--uth-green);
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    width: 90%;
+}
+
+.title-green {
+    color: var(--uth-green);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+}
+
+.login-box {
+    border: 2px solid #00964080;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 1rem;
+}
+
+/* ─── Footer ────────────────────────────────────── */
+.footer-line {
+    height: 4px;
+    background-color: var(--uth-green);
+    margin-bottom: 10px;
+}

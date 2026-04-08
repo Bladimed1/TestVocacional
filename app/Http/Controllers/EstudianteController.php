@@ -12,7 +12,7 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        //
+        return view('estudiante.index');
     }
 
     /**
@@ -62,4 +62,8 @@ class EstudianteController extends Controller
     {
         //
     }
+
+    /*public function menu() {
+        return view('estudiante.index');
+    }*/
 }
