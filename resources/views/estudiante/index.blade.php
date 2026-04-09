@@ -13,7 +13,7 @@
                         Realiza nuestro Test Vocacional. Analizaremos tus habilidades, lógica de programación y preferencias para sugerirte la especialidad ideal para ti.
                     </p>
 
-                    <a href="/test/notas" class="btn btn-verde-uth fw-bold px-4 py-3 rounded-pill d-inline-flex align-items-center gap-2 text-decoration-none shadow-sm transition-hover fs-5">
+                    <a href="{{ route('estudiante.test') }}" class="btn btn-verde-uth fw-bold px-4 py-3 rounded-pill d-inline-flex align-items-center gap-2 text-decoration-none shadow-sm transition-hover fs-5">
                         <i class="bi bi-ui-checks-grid"></i> COMENZAR TEST VOCACIONAL
                     </a>
                 </div>

@@ -25,6 +25,6 @@ Route::get('/director/grupo/{grupo}', [DirectorController::class, 'grupo'])->nam
 
 Route::get('/director/alumnos', [DirectorController::class, 'alumnos'])->name('director.alumnos');
 
-
+Route::get('/estudiante/test', [EstudianteController::class, 'test'])->name('estudiante.test');
 
 ?>
