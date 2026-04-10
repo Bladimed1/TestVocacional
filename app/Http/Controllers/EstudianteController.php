@@ -74,6 +74,7 @@ class EstudianteController extends Controller
 
         if ($response->successful()) {
             $data = $response->json();
+            $data = $data["cuestionario"];
 
             return view ('estudiante.test', compact('data'));
         }

@@ -37,4 +37,18 @@ class DirectorController extends Controller
     {
         return view('director.alumnos');
     }
+
+    public function insertarAlumnos () {
+        $response = Http::get('https://franciscoagm-trabajos.com/consumibles_test/alumnos.json');
+
+        if ($response->successful()) {
+            $estudiantes = $response->json();
+
+            foreach ($estudiantes['estudiantes'] as $estudiante) {
+                DB::table('estudiantes')->insert($estudiante);
+            }
+        } else {
+            echo 'Error al obtener el JSON: ' . $response->status();
+        }
+            }
 }
