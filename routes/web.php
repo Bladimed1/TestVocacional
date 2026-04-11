@@ -25,6 +25,10 @@ Route::get('/director/grupo/{grupo}', [DirectorController::class, 'grupo'])->nam
 
 Route::get('/director/alumnos', [DirectorController::class, 'alumnos'])->name('director.alumnos');
 
+Route::get('/director/cargar-alumnos', [DirectorController::class, 'insertarAlumnos'])->name('director.cargar.alumnos');
 
+Route::get('/estudiante/test', [EstudianteController::class, 'test'])->name('estudiante.test');
+
+Route::post('/director/alumnos/estatus/{matricula}', [DirectorController::class, 'cambiarEstatus'])->name('director.alumnos.estatus');
 
 ?>

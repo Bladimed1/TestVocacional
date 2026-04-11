@@ -22,7 +22,7 @@ return new class extends Migration
             $table->String('grupo');
             $table->boolean('estatus')->default(true);
             $table->tinyInteger('intentos');
-            $table->unsignedBigInteger('id_especialidad'); 
+            $table->unsignedBigInteger('id_especialidad')->nullable();
             $table->foreign('id_especialidad')->references('id')->on('especialidades')->onDelete('cascade');
             $table->timestamps();
         });
