@@ -7,17 +7,13 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EstudianteController;
 
 
-Route::get('/director', [DirectorController::class, 'index'])->name('director.index');
-
-
 
 Route::get('/login', [LoginController::class, 'login']);
-Route::post('/auth_g', [LoginController::class, 'auth']);
-
-Route::get('/estudiante', [EstudianteController::class, 'index']);
-
+Route::post('/auth', [LoginController::class, 'auth']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
+Route::get('/director', [DirectorController::class, 'index'])->name('director.index');
 
 Route::get('/director/estadisticas', [DirectorController::class, 'estadisticas'])->name('director.estadisticas');
 
@@ -27,8 +23,9 @@ Route::get('/director/alumnos', [DirectorController::class, 'alumnos'])->name('d
 
 Route::get('/director/cargar-alumnos', [DirectorController::class, 'insertarAlumnos'])->name('director.cargar.alumnos');
 
-Route::get('/estudiante/test', [EstudianteController::class, 'test'])->name('estudiante.test');
-
 Route::post('/director/alumnos/estatus/{matricula}', [DirectorController::class, 'cambiarEstatus'])->name('director.alumnos.estatus');
+    
 
+Route::get('/estudiante', [EstudianteController::class, 'index'])->name('estudiante.index');
+Route::get('/estudiante/test', [EstudianteController::class, 'preguntasTest'])->name('estudiante.test');
 ?>

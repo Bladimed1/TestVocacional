@@ -56,7 +56,7 @@
 <script>
     function loginConGoogle(response) {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        fetch("/auth_g", {
+        fetch("/auth", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

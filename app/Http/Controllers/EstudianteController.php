@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class EstudianteController extends Controller
 {
@@ -13,11 +14,6 @@ class EstudianteController extends Controller
     public function index()
     {
         return view('estudiante.index');
-    }
-
-    public function test()
-    {
-        return view('estudiante.test');
     }
 
     /**
@@ -74,11 +70,28 @@ class EstudianteController extends Controller
 
         if ($response->successful()) {
             $data = $response->json();
-            $data = $data["cuestionario"];
+            $test = $data["cuestionario"];
 
-            return view ('estudiante.test', compact('data'));
+            return view ('estudiante.test', compact('test'));
         }
 
         return back()->withError('Error al obtener datos');
+    }
+
+    public function preguntasTest() {
+        $response = Http::get('https://franciscoagm-trabajos.com/consumibles_test/preguntas.json');
+
+        if ($response->successful()) {
+            $data = $response->json();
+            $test = $data['cuestionario']['categorias'];
+
+            $categoriaEscala = array_filter($test, fn($c) => $c['id'] !== 5);
+            $categoriaFinal = collect($test)->firstWhere('id', 5);
+
+            return view('estudiante.test', compact('categoriaEscala', 'categoriaFinal'));
+        }
+
+        return back()->withError('Error al obtener datos');
+
     }
 }
