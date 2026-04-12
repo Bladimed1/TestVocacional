@@ -56,7 +56,7 @@
 
                 <div class="input-group" style="max-width: 300px;">
                     <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
-                    <input type="text" class="form-control bg-light border-start-0" placeholder="Buscar alumno...">
+                    <input type="text" id="buscadorMatricula" class="form-control bg-light border-start-0" placeholder="Buscar por Matrícula...">
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
                     <tbody>
                         @forelse($listaAlumnos as $alumno)
                             <tr class="align-middle transition-colors hover-bg-light fila-alumno"
-                                data-grupo="{{ $alumno->grupo }}">
+                                data-grupo="{{ $alumno->grupo }}" data-matricula="{{ $alumno->matricula }}">
                                 <td class="ps-4 fw-bold text-secondary">{{ $alumno->matricula }}</td>
                                 <td class="fw-medium text-dark">{{ $alumno->nombre. " ". $alumno->apellidoPaterno. " "
                                 . $alumno->apellidoMaterno }}</td>
@@ -139,29 +139,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        // 1. Escuchamos cada vez que el select cambia de valor
-        document.getElementById('filtroGrupo').addEventListener('change', function () {
-            // 2. Guardamos qué grupo eligió el usuario (ej. 'A', 'B' o 'Todos')
-            let grupoSeleccionado = this.value;
-
-            // 3. Seleccionamos todas las filas de la tabla que marcamos en el Paso 2
-            let filas = document.querySelectorAll('.fila-alumno');
-
-            // 4. Revisamos fila por fila
-            filas.forEach(fila => {
-                // Sacamos el grupo de la fila actual leyendo su data-grupo
-                let grupoDeLaFila = fila.getAttribute('data-grupo');
-
-                // Si elegimos 'Todos' o si el grupo de la fila coincide con el elegido...
-                if (grupoSeleccionado === 'Todos' || grupoSeleccionado === grupoDeLaFila) {
-                    fila.style.display = ''; // ...mostramos la fila
-                } else {
-                    fila.style.display = 'none'; // ...si no, la ocultamos
-                }
-            });
-        });
-    </script>
+    <script src="{{ asset('js/alumnos.js') }}"></script>
 
 </body>
 
