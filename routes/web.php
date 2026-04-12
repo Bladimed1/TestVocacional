@@ -28,4 +28,5 @@ Route::post('/director/alumnos/estatus/{matricula}', [DirectorController::class,
 
 Route::get('/estudiante', [EstudianteController::class, 'index'])->name('estudiante.index');
 Route::get('/estudiante/test', [EstudianteController::class, 'preguntasTest'])->name('estudiante.test');
+Route::post('/estudiante/test/resultados', [EstudianteController::class, 'resultados'])->name('estudiante.resultados');
 ?>

@@ -64,20 +64,6 @@ class EstudianteController extends Controller
         //
     }
 
-    public function testJson() {
-        // GET request básico
-        $response = Http::get('https://franciscoagm-trabajos.com/consumibles_test/preguntas.json');
-
-        if ($response->successful()) {
-            $data = $response->json();
-            $test = $data["cuestionario"];
-
-            return view ('estudiante.test', compact('test'));
-        }
-
-        return back()->withError('Error al obtener datos');
-    }
-
     public function preguntasTest() {
         $response = Http::get('https://franciscoagm-trabajos.com/consumibles_test/preguntas.json');
 
@@ -93,5 +79,16 @@ class EstudianteController extends Controller
 
         return back()->withError('Error al obtener datos');
 
+    }
+
+    public function resultados (Request $request) {
+
+        $respuestas = $request->input('respuestas');
+
+
+        foreach ($respuestas as $especialidad => $preguntas) {
+            $resultados[$especialidad] = array_sum($preguntas);
+        }
+        return view ('estudiante.resultados', compact('resultados'));
     }
 }
