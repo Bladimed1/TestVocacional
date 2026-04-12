@@ -7,24 +7,30 @@
 </head>
 <body>
 
+<form action="{{route ('estudiante.resultados')}}" method="post" required>
+    @csrf
+
     @foreach ($categoriaEscala as $categoria)
         <h4>{{$categoria['nombre']}}</h4>
-    @foreach ($categoria['preguntas'] as $pregunta)
-      <label for="pregunta">{{$pregunta['texto']}}</label> <br>
-      <input type="radio" name="{{$pregunta['especialidad']}}" id=""> 1 <br>
-      <input type="radio" name="{{$pregunta['especialidad']}}" id=""> 2 <br>
-      <input type="radio" name="{{$pregunta['especialidad']}}" id=""> 3 <br>
-      <input type="radio" name="{{$pregunta['especialidad']}}" id=""> 4 <br>
-      <input type="radio" name="{{$pregunta['especialidad']}}" id=""> 5 <br>
-    @endforeach
+        @foreach ($categoria['preguntas'] as $pregunta)
+            <label>{{$pregunta['texto']}}</label> <br>
+            <input type="radio" name="respuestas[{{$pregunta['especialidad']}}][{{$pregunta['id']}}]" value="1"> 1 <br>
+            <input type="radio" name="respuestas[{{$pregunta['especialidad']}}][{{$pregunta['id']}}]" value="2"> 2 <br>
+            <input type="radio" name="respuestas[{{$pregunta['especialidad']}}][{{$pregunta['id']}}]" value="3"> 3 <br>
+            <input type="radio" name="respuestas[{{$pregunta['especialidad']}}][{{$pregunta['id']}}]" value="4"> 4 <br>
+            <input type="radio" name="respuestas[{{$pregunta['especialidad']}}][{{$pregunta['id']}}]" value="5"> 5 <br>
+        @endforeach
     @endforeach
 
-        <h4>{{$categoriaFinal['nombre']}}</h4>
+    <h4>{{$categoriaFinal['nombre']}}</h4>
     @foreach ($categoriaFinal['preguntas'] as $pregunta)
-
-     <label for="pregunta">{{$pregunta['texto']}}</label> <br>
-   
+        <label>{{$pregunta['texto']}}</label> <br>
+        <input type="radio" name="respuestas[{{$pregunta['especialidad']}}][{{$pregunta['id']}}]" value="20"> si <br>
+        <input type="radio" name="respuestas[{{$pregunta['especialidad']}}][{{$pregunta['id']}}]" value="0"> no <br>
     @endforeach
+
+    <input type="submit" value="Enviar">
+</form>
 
 </body>
 </html>
