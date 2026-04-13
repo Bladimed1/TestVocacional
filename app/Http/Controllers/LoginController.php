@@ -78,7 +78,7 @@ class LoginController extends Controller
             case "estudiante":
                 return redirect()->route('estudiante.index');
             default:
-            return redirect()->route('login')->with('error', 'Rol no reconocido');
+            return redirect()->route('index.estudiante')->with('error', 'Rol no reconocido');
             }
 
         } else {

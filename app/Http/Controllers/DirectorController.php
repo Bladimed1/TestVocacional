@@ -13,32 +13,49 @@ class DirectorController extends Controller
         return view('director.index');
     }
     
-    public function estadisticas()
-    {
-        $datosBD = DB::table('resultados')
-            ->join('especialidades', 'resultados.id_especialidad', '=', 'especialidades.id')
-            ->select('especialidades.nombre as especialidad', DB::raw('count(resultados.id_estudiante) as total'))
-            ->groupBy('especialidades.nombre')
-            ->pluck('total', 'especialidad')
-            ->toArray();
+    public function estadisticas(){
+    $datosBD = DB::table('resultados')
+        ->join('especialidades', 'resultados.id_especialidad', '=', 'especialidades.id')
+        ->select('especialidades.nombre as especialidad', DB::raw('count(resultados.id_estudiante) as total'))
+        ->groupBy('especialidades.nombre')
+        ->pluck('total', 'especialidad')
+        ->toArray();
 
-        if (empty($datosBD)) {
-            $resultados = [
-                'Desarrollo de Software Multiplataforma' => 0,
-                'Infraestructura de Redes Digitales' => 0,
-                'Entornos Virtuales y Negocios Digitales' => 0
-            ];
-            $maxDemanda = 0;
-            $especialidadTop = 'Sin datos aún';
-        } else {
-            $resultados = $datosBD;
-            $maxDemanda = max($resultados);
-            $especialidadTop = array_search($maxDemanda, $resultados);
+    // Siempre inicializar con 0 para evitar Undefined array key
+    $resultados = [
+        'software' => 0,
+        'redes'    => 0,
+        'entornos' => 0,
+    ];
+
+    foreach ($datosBD as $nombre => $total) {
+        if (str_contains($nombre, 'Software')) {
+            $resultados['software'] = (int) $total;
+        } elseif (str_contains($nombre, 'Redes')) {
+            $resultados['redes'] = (int) $total;
+        } elseif (str_contains($nombre, 'Virtuales')) {
+            $resultados['entornos'] = (int) $total;
         }
-
-        return view('director.estadisticas', compact('resultados', 'especialidadTop', 'maxDemanda'));
     }
 
+    if (empty($datosBD)) {
+        $maxDemanda     = 0;
+        $especialidadTop = 'Sin datos aún';
+    } else {
+        $maxDemanda      = max($resultados);
+        $especialidadTop = array_search($maxDemanda, $resultados);
+
+        // Convertir clave corta a nombre legible
+        $nombres = [
+            'software' => 'Desarrollo de Software',
+            'redes'    => 'Redes y Ciberseguridad',
+            'entornos' => 'Entornos Virtuales',
+        ];
+        $especialidadTop = $nombres[$especialidadTop] ?? $especialidadTop;
+    }
+
+    return view('director.estadisticas', compact('resultados', 'especialidadTop', 'maxDemanda'));
+}
     public function grupo($grupo)
     {
         return view('director.grupo', compact('grupo'));
