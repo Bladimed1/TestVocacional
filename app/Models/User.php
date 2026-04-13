@@ -30,7 +30,7 @@ class User extends Authenticatable
         ];
     }*/
 
-    public function roles(){
+    public function rol(){
     return $this->belongsTo(Rol::class, 'id_rol');
     }
 }

@@ -12,10 +12,11 @@
                     <p class="text-dark fw-medium mb-4" style="font-size: 1.1rem;">
                         Realiza nuestro Test Vocacional. Analizaremos tus habilidades, lógica de programación y preferencias para sugerirte la especialidad ideal para ti.
                     </p>
-
+                    @if ($intentos < 2)
                     <a href="{{ route('estudiante.test') }}" class="btn btn-verde-uth fw-bold px-4 py-3 rounded-pill d-inline-flex align-items-center gap-2 text-decoration-none shadow-sm transition-hover fs-5">
                         <i class="bi bi-ui-checks-grid"></i> COMENZAR TEST VOCACIONAL
                     </a>
+                    @endif
                 </div>
                 <div class="d-none d-lg-block text-center pe-4">
                     <i class="bi bi-laptop text-success opacity-25" style="font-size: 10rem;"></i>

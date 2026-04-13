@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
+use App\Models\Resultado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use App\Models\Estudiante;
+use Illuminate\Support\Facades\DB;
+
 
 class EstudianteController extends Controller
 {
@@ -14,7 +17,11 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        return view('estudiante.index');
+        $email = session ('email');
+
+        $intentos = Estudiante::where('email', $email)->value('intentos');
+
+        return view('estudiante.index', compact('intentos'));
     }
 
     /**
@@ -98,7 +105,7 @@ class EstudianteController extends Controller
             'redes'    => 2,
             'entornos' => 3,
         ];
-
+        $cont = 0;
         $valorMax = max($resultados);
         $especialidadGanadora = array_search($valorMax, $resultados);
 
@@ -106,13 +113,15 @@ class EstudianteController extends Controller
             $id_especialidad = $especialidades[$especialidadGanadora];
 
             $estudiante = Estudiante::where('email', $email)->first();
-            $id_estudiante = $estudiante->id;
+
 
             // Actualiza estudiante
             $estudiante->update([
                 'id_especialidad' => $id_especialidad,
-                'intentos'        => DB::raw('intentos + 1'),
+                'intentos'        => $estudiante->intentos+1
             ]);
+
+            $id_estudiante = $estudiante->id;
 
             // Guarda resultado con la especialidad ya actualizada
             Resultado::updateOrCreate(
@@ -120,7 +129,7 @@ class EstudianteController extends Controller
                 [   
                     'id_estudiante'  => $id_estudiante,
                     'id_especialidad' => $id_especialidad,
-                    'puntaje'         => $valorMax,
+                    'puntaje'         => $valorMax
                 ]
             );
 
@@ -133,15 +142,29 @@ class EstudianteController extends Controller
         return view('estudiante.resultados', compact('resultados', 'intentos'));
     }
 
-    public function infoDesarrollo () {
-
+    private function getSecciones()
+    {
+        return Cache::remember('modulos_informativos', 3600, function () {
+            $response = Http::get('https://franciscoagm-trabajos.com/consumibles_test/modulos_informativos.json');
+            return $response->successful() ? $response->json('modulo_informativo.secciones') : [];
+        });
     }
 
-    public function infoRedes () {
-
+    public function infoDesarrollo()
+    {
+        $seccion = collect($this->getSecciones())->firstWhere('id', 1);
+        return view('estudiante.infoDesarrollo', compact('seccion'));
     }
 
-    public function infoEntornos () {
+    public function infoRedes()
+    {
+        $seccion = collect($this->getSecciones())->firstWhere('id', 2);
+        return view('estudiante.infoRedes', compact('seccion'));
+    }
 
+    public function infoEntornos()
+    {
+        $seccion = collect($this->getSecciones())->firstWhere('id', 3);
+        return view('estudiante.infoEntornos', compact('seccion'));
     }
 }
