@@ -88,7 +88,7 @@
                                 <td>
                                     <span class="badge bg-light text-dark border px-2 py-1">{{ $alumno->grupo }}</span>
                                 </td>
-                                <td class="text-muted">{{ $alumno->correo }}</td>
+                                <td class="text-muted">{{ $alumno->email }}</td>
                                 
                                 <td>
                                     @if($alumno->estatus)
