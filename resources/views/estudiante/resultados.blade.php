@@ -72,11 +72,11 @@
 
         <div class="text-center mt-5">
             @if ($intentos < 2)
-            <a href="{{ url('/estudiante/test') }}" class="btn btn-outline-success btn-lg px-5 rounded-pill fw-bold shadow-sm">
+            <a href="{{ route('estudiante.test') }}" class="btn btn-outline-success btn-lg px-5 rounded-pill fw-bold shadow-sm">
                 <i class="bi bi-arrow-repeat me-2"></i> Volver a intentar
             </a>
             @endif
-            <a href="{{ url('/estudiante') }}" class="btn btn-outline-success btn-lg px-5 rounded-pill fw-bold shadow-sm">
+            <a href="{{ route('estudiante.index') }}" class="btn btn-outline-success btn-lg px-5 rounded-pill fw-bold shadow-sm">
                 <i class="bi bi-house-door-fill me-2"></i> Volver a mi Perfil
             </a>
             

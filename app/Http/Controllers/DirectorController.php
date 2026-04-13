@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use App\Models\Especialidad;
 
 class DirectorController extends Controller
 {
@@ -30,11 +31,11 @@ class DirectorController extends Controller
 
         // 3. Llenamos nuestro arreglo buscando palabras clave
         foreach ($datosBD as $nombre => $total) {
-            if (str_contains($nombre, 'Software')) {
+            if (str_contains($nombre, 'software')) {
                 $resultados['software'] = (int) $total;
-            } elseif (str_contains($nombre, 'Redes')) {
+            } elseif (str_contains($nombre, 'redes')) {
                 $resultados['redes'] = (int) $total;
-            } elseif (str_contains($nombre, 'Virtuales')) {
+            } elseif (str_contains($nombre, 'virtuales')) {
                 $resultados['entornos'] = (int) $total;
             }
         }
