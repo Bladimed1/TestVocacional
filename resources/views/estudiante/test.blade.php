@@ -14,7 +14,7 @@
 <body class="fondo-ondas bg-light">
 
     <nav class="navbar navbar-light bg-white shadow-sm px-4 py-3 mb-4 d-flex align-items-center position-relative">
-        <a href="{{ url('/estudiante') }}" class="text-decoration-none text-dark fw-bold transition-colors hover:text-success position-absolute" style="left: 1.5rem; z-index: 10;">
+        <a href="{{ route('estudiante.index') }}" class="text-decoration-none text-dark fw-bold transition-colors hover:text-success position-absolute" style="left: 1.5rem; z-index: 10;">
             <i class="bi bi-arrow-left me-2"></i> Volver al Inicio
         </a>
         <span class="fw-bold text-success mx-auto fs-5">

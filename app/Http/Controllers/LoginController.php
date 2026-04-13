@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -11,7 +12,7 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function auth(Request $request)
+    public function authGoogle(Request $request)
     {
         $token = $request->input('token');
 
@@ -28,18 +29,29 @@ class LoginController extends Controller
             return response()->json(['ok' => false], 401); 
         }
 
-        $info = $response->json();
+        $user_google = $response->json();
 
         // 3. SEGURIDAD: Verificar que el token fue emitido para tu App
-        if (!isset($info['aud']) || $info['aud'] !== '935792453890-qhfu7en8ch5ugidi3s9763cv3fl0dqo9.apps.googleusercontent.com') {
+        if (!isset($user_google['aud']) || $user_google['aud'] !== '935792453890-qhfu7en8ch5ugidi3s9763cv3fl0dqo9.apps.googleusercontent.com') {
             return response()->json(['ok' => false, 'error' => 'Token no pertenece a esta app'], 401);
         }
 
-        if (isset($info['email'])) {
-            
+        $dominioPermitido = 'uth.edu.mx';
+
+        if (!isset($user_google['hd']) || $user_google['hd'] !== $dominioPermitido) {
+            return response()->json([
+                'ok' => false, 
+                'error' => 'Acceso restringido a cuentas de ' . $dominioPermitido
+            ], 403);
+        }
+
+        if (isset($user_google['email'])) {
             session([
-                'email'  => $info['email'],
-                'nombre' => $info['name'] ?? ''
+                'email'  => $user_google['email'],
+                'nombre' => $user_google['name'] ?? '',
+                'foto_perfil'  => $user_google['picture'],
+                'id_google'  => $user_google['sub']
+
             ]);
 
             return response()->json(['ok' => true]);
@@ -49,9 +61,36 @@ class LoginController extends Controller
         return response()->json(['ok' => false], 401);
     }
 
+     public function auth () {
+
+        $email = session ('email');
+        $nombre_completo = session ('nombre');
+        $email = session ('email');
+
+
+        $usuario = User::where('email', $email)->first();
+
+        if ($usuario) {
+        
+            $rol = $usuario->id_rol;
+            switch ($rol) {
+            case 1:
+                return redirect()->route('director.index');
+            case 2:
+                return redirect()->route('alumno.index');
+            default:
+                return redirect()->route('login')->with('error', 'Rol no reconocido');
+            }
+
+        } else {
+
+        }
+
+    }
+ 
     public function logout () {
-        session()->forget('email');
-        session()->forget('nombre');
+        session()->flush();
         return view ('login');
     }
+
 }
