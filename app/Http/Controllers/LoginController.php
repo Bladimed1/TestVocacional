@@ -75,7 +75,7 @@ class LoginController extends Controller
             switch ($rol) {
             case "director":
                 return redirect()->route('director.index');
-            case "alumno":
+            case "estudiante":
                 return redirect()->route('estudiante.index');
             default:
             return redirect()->route('login')->with('error', 'Rol no reconocido');
