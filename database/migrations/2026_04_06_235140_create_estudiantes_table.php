@@ -16,7 +16,7 @@ return new class extends Migration
             $table->String('nombre');
             $table->String('apellidoPaterno');
             $table->String('apellidoMaterno');
-            $table->String('correo');
+            $table->String('email');
             $table->String('matricula');
             $table->tinyInteger('cuatrimestre');
             $table->String('grupo');

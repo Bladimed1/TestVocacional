@@ -79,26 +79,9 @@ function loginConGoogle(response) {
             return;
         }
 
-        // Segundo auth
-        return fetch('/authGoogle/auth', {
-            method: 'POST',
-            headers: {
-                "X-CSRF-TOKEN": csrfToken
-            },
-            redirect: "follow"
-        });
+        // 🔥 Redirección directa al segundo auth
+        window.location.href = "/authGoogle/auth";
 
-    })
-    .then(res => {
-        if (!res) return;
-
-        // Redirección desde Laravel
-        if (res.redirected) {
-            window.location.href = res.url;
-        } else {
-            // fallback por si no detecta redirected
-            window.location.reload();
-        }
     })
     .catch(error => {
         console.error("Error:", error);

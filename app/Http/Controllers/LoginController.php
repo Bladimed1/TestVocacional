@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
+use App\Models\Estudiante;
 
 class LoginController extends Controller
 {
@@ -49,8 +50,7 @@ class LoginController extends Controller
             session([
                 'email'  => $user_google['email'],
                 'nombre' => $user_google['name'] ?? '',
-                'foto_perfil'  => $user_google['picture'],
-                'id_google'  => $user_google['sub']
+                'google_id'  => $user_google['sub']
 
             ]);
 
@@ -62,27 +62,48 @@ class LoginController extends Controller
     }
 
      public function auth () {
-
         $email = session ('email');
         $nombre_completo = session ('nombre');
-        $email = session ('email');
+        $google_id = session('google_id');
 
 
-        $usuario = User::where('email', $email)->first();
+        $usuario = User::with('rol')->where('email', $email)->first();
 
         if ($usuario) {
-        
-            $rol = $usuario->id_rol;
+            $rol = $usuario->rol->rol;
+            
             switch ($rol) {
-            case 1:
+            case "director":
                 return redirect()->route('director.index');
-            case 2:
-                return redirect()->route('alumno.index');
+            case "alumno":
+                return redirect()->route('estudiante.index');
             default:
-                return redirect()->route('login')->with('error', 'Rol no reconocido');
+            return redirect()->route('login')->with('error', 'Rol no reconocido');
             }
 
         } else {
+            $estudiante = Estudiante::where('email', $email)->first();
+            
+            if ($estudiante) {
+
+                $usuario = new User();
+                $usuario->nombre_completo = $nombre_completo;
+                $usuario->email = $email;
+                $usuario->google_id = $google_id;
+                $usuario->id_rol = 2;
+                $usuario->save();
+
+                /*DB::table('users')->insert([
+                    'nombre_completo' => $nombre_completo,
+                    'email' => $email,
+                    'google_id' => $google_id,
+                    'id_rol' => 2
+                ]);*/
+
+                return redirect()->route('estudiante.index');
+
+
+            } else {return redirect()->route('login')->with('error', 'No tienes acceso al test');}
 
         }
 
@@ -90,7 +111,7 @@ class LoginController extends Controller
  
     public function logout () {
         session()->flush();
-        return view ('login');
+        return redirect()->route('login');
     }
 
 }
