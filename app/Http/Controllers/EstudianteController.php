@@ -89,6 +89,6 @@ class EstudianteController extends Controller
         foreach ($respuestas as $especialidad => $preguntas) {
             $resultados[$especialidad] = array_sum($preguntas);
         }
-        return view ('estudiante.resultados', compact('resultados'));
+        return view ('estudiante.resultados', compact('resultados'));   
     }
 }

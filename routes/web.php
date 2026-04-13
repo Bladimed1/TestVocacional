@@ -10,7 +10,7 @@ use App\Http\Controllers\EstudianteController;
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/authGoogle', [LoginController::class, 'authGoogle']);
-Route::post('/authGoogle/auth', [LoginController::class, 'auth']);
+Route::get('/authGoogle/auth', [LoginController::class, 'auth']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
