@@ -12,22 +12,30 @@ class DirectorController extends Controller
     {
         return view('director.index');
     }
-
-    //Función provisional para presentar como se verían los datos dentro de la gráfica
+    
     public function estadisticas()
     {
-        // 1. Simulamos los resultados de los test (después esto vendrá de Adminer/MySQL)
-        $resultados = [
-            'Desarrollo de Software' => 145,
-            'Redes y Ciberseguridad' => 98,
-            'Entornos Virtuales' => 112
-        ];
+        $datosBD = DB::table('resultados')
+            ->join('especialidades', 'resultados.id_especialidad', '=', 'especialidades.id')
+            ->select('especialidades.nombre as especialidad', DB::raw('count(resultados.id_estudiante) as total'))
+            ->groupBy('especialidades.nombre')
+            ->pluck('total', 'especialidad')
+            ->toArray();
 
-        // 2. Calculamos cuál es la especialidad con más demanda usando PHP
-        $maxDemanda = max($resultados); // Saca el número más alto (145)
-        $especialidadTop = array_search($maxDemanda, $resultados); // Saca el nombre ('Software')
+        if (empty($datosBD)) {
+            $resultados = [
+                'Desarrollo de Software Multiplataforma' => 0,
+                'Infraestructura de Redes Digitales' => 0,
+                'Entornos Virtuales y Negocios Digitales' => 0
+            ];
+            $maxDemanda = 0;
+            $especialidadTop = 'Sin datos aún';
+        } else {
+            $resultados = $datosBD;
+            $maxDemanda = max($resultados);
+            $especialidadTop = array_search($maxDemanda, $resultados);
+        }
 
-        // 3. Enviamos todos estos datos a la nueva vista
         return view('director.estadisticas', compact('resultados', 'especialidadTop', 'maxDemanda'));
     }
 

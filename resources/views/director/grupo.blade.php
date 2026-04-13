@@ -28,14 +28,6 @@
                 <h2 class="fw-bolder text-dark mb-0">Resultados del Grupo {{ $grupo }}</h2>
             </div>
             
-            <div class="d-flex gap-2">
-                <button class="btn btn-outline-secondary fw-semibold">
-                    <i class="bi bi-file-earmark-pdf-fill text-danger"></i> Exportar PDF
-                </button>
-                <button class="btn btn-outline-success fw-semibold">
-                    <i class="bi bi-file-earmark-excel-fill"></i> Exportar Excel
-                </button>
-            </div>
         </div>
 
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-5">
