@@ -41,7 +41,7 @@
             </div>
             <div class="card-body p-4 d-flex flex-column">
                 <p class="text-secondary mb-4">Conviértete en un experto creando aplicaciones web, móviles y sistemas de escritorio dominando lenguajes de programación y bases de datos.</p>
-                <a href="/videos/especialidad" class="btn btn-outline-success fw-bold mt-auto rounded-3">Leer más <i class="bi bi-arrow-right ms-1"></i></a>
+                <a href="{{route('estudiante.infoDesarrollo')}}" class="btn btn-outline-success fw-bold mt-auto rounded-3">Leer más <i class="bi bi-arrow-right ms-1"></i></a>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="card-body p-4 d-flex flex-column">
                 <p class="text-secondary mb-4">Aprende a diseñar experiencias inmersivas, modelado 3D, desarrollo de videojuegos y estrategias de negocios digitales vanguardistas.</p>
-                <a href="/videos/especialidad" class="btn btn-outline-success fw-bold mt-auto rounded-3">Leer más <i class="bi bi-arrow-right ms-1"></i></a>
+                <a href="{{route('estudiante.infoEntornos')}}" class="btn btn-outline-success fw-bold mt-auto rounded-3">Leer más <i class="bi bi-arrow-right ms-1"></i></a>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
             </div>
             <div class="card-body p-4 d-flex flex-column">
                 <p class="text-secondary mb-4">Protege la información de las organizaciones, configura servidores y diseña infraestructuras de telecomunicaciones de alto nivel.</p>
-                <a href="/videos/especialidad" class="btn btn-outline-success fw-bold mt-auto rounded-3">Leer más <i class="bi bi-arrow-right ms-1"></i></a>
+                <a href="{{route('estudiante.infoRedes')}}" class="btn btn-outline-success fw-bold mt-auto rounded-3">Leer más <i class="bi bi-arrow-right ms-1"></i></a>
             </div>
         </div>
     </div>
