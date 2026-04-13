@@ -54,27 +54,56 @@
 @push('scripts')
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
-    function loginConGoogle(response) {
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        fetch("/auth", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": csrfToken
-                },
-                body: JSON.stringify({
-                    token: response.credential
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.ok) {
-                    window.location.href = "/estudiante";
-                } else {
-                    alert("Error: " + (data.error || "Token inválido"));
-                }
-            })
-            .catch(error => console.error("Error:", error));
-    }
+function loginConGoogle(response) {
+
+    const csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute('content');
+
+    // Primer auth (Google + crear sesión)
+    fetch("/authGoogle", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": csrfToken
+        },
+        body: JSON.stringify({
+            token: response.credential
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        if (!data.ok) {
+            alert("Error: " + (data.error || "Token inválido"));
+            return;
+        }
+
+        // Segundo auth
+        return fetch('/authGoogle/auth', {
+            method: 'POST',
+            headers: {
+                "X-CSRF-TOKEN": csrfToken
+            },
+            redirect: "follow"
+        });
+
+    })
+    .then(res => {
+        if (!res) return;
+
+        // Redirección desde Laravel
+        if (res.redirected) {
+            window.location.href = res.url;
+        } else {
+            // fallback por si no detecta redirected
+            window.location.reload();
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Ocurrió un error al iniciar sesión");
+    });
+}
 </script>
 @endpush
