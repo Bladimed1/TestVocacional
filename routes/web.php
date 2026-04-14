@@ -35,4 +35,20 @@ Route::get('/estudiante/mis-resultados', [EstudianteController::class, 'verResul
 Route::get('/estudiante/infoDesarrollo', [EstudianteController::class, 'infoDesarrollo'])->name('estudiante.infoDesarrollo');
 Route::get('/estudiante/infoRedes', [EstudianteController::class, 'infoRedes'])->name('estudiante.infoRedes');
 Route::get('/estudiante/infoEntornos', [EstudianteController::class, 'infoEntornos'])->name('estudiante.infoEntornos');
+
+
+
+
+
+/*Route::middleware(['ValidaSesion'])->group(function () {
+    
+
+});*/
+
+
+
+
+
+
+
 ?>

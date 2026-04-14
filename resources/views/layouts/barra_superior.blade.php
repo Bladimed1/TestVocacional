@@ -43,12 +43,6 @@
 
                 <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown">
                     <li>
-                        <a class="dropdown-item py-2 fw-semibold" href="/configuracion">
-                            <i class="bi bi-gear-fill me-2"></i> Configuración
-                        </a>
-                    </li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="dropdown-item py-2 fw-semibold text-danger">
@@ -66,11 +60,17 @@
         @yield('content')
     </main>
 
-    <footer class="mt-auto py-4 text-center position-relative z-2">
+   <footer class="mt-auto py-4 text-center position-relative z-2">
+
         <div class="container text-center">
+
             <div class="footer-linea mb-3 mx-auto" style="max-width: 2000px;"></div>
-            <p class="text-secondary fw-semibold mb-0 small">&copy; {{ date('Y') }} Plataforma de Orientación Vocacional - UTH</p>
-        </div>
+
+                <p class="text-secondary fw-semibold mb-0 small">&copy; {{ date('Y') }} Plataforma de Orientación Vocacional - UTH -
+                    <a href="https://www.uth.edu.mx/images/avisos-de-privacidad/2025/Aviso-Privacidad-Integral-Prestacion-de-Servicios-Tecnologicos.pdf" class="fw-bold text-decoration-none" style="color: var(--verde-uth);">Aviso de Privacidad (Ver más)</a>
+                </p>
+            </div>
+
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

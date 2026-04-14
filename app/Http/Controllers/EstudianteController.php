@@ -17,9 +17,7 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        $email = session ('email');
-
-        $intentos = Estudiante::where('email', $email)->value('intentos');
+        $intentos = $this->intentosTest();   
 
         return view('estudiante.index', compact('intentos'));
     }
@@ -180,20 +178,33 @@ class EstudianteController extends Controller
     }
 
     public function infoDesarrollo()
-    {
+    {   
+
+        $intentos = $this->intentosTest();
+
         $seccion = collect($this->getSecciones())->firstWhere('id', 1);
-        return view('estudiante.infoDesarrollo', compact('seccion'));
+        return view('estudiante.infoDesarrollo', compact('seccion', 'intentos'));
     }
 
     public function infoRedes()
-    {
+    {   
+        $intentos = $this->intentosTest();
+
         $seccion = collect($this->getSecciones())->firstWhere('id', 2);
-        return view('estudiante.infoRedes', compact('seccion'));
+        return view('estudiante.infoRedes', compact('seccion', 'intentos'));
     }
 
     public function infoEntornos()
     {
+        $intentos = $this->intentosTest();
+
         $seccion = collect($this->getSecciones())->firstWhere('id', 3);
-        return view('estudiante.infoEntornos', compact('seccion'));
+        return view('estudiante.infoEntornos', compact('seccion', 'intentos'));
+    }
+
+    public function intentosTest() {
+        $email = session ('email');
+
+        return $intentos = Estudiante::where('email', $email)->value('intentos');
     }
 }

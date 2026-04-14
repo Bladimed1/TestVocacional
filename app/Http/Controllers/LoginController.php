@@ -76,15 +76,23 @@ class LoginController extends Controller
             case "director":
                 return redirect()->route('director.index');
             case "estudiante":
-                return redirect()->route('estudiante.index');
+
+                $estudiante = Estudiante::where('email', $email)->first();
+                $estatus = $estudiante->estatus;
+
+                if ($estatus == 1) {
+                    return redirect()->route('estudiante.index');
+                }
+                
             default:
-            return redirect()->route('index.estudiante')->with('error', 'Rol no reconocido');
+            session()->flush();
+            return redirect()->route('login')->with('error', 'Rol no reconocido');
             }
 
         } else {
             $estudiante = Estudiante::where('email', $email)->first();
-            
-            if ($estudiante) {
+            $estatus = $estudiante->estatus;
+            if ($estudiante && $estatus == 1) {
 
                 $usuario = new User();
                 $usuario->nombre_completo = $nombre_completo;
@@ -103,7 +111,10 @@ class LoginController extends Controller
                 return redirect()->route('estudiante.index');
 
 
-            } else {return redirect()->route('login')->with('error', 'No tienes acceso al test');}
+            } else {
+                session()->flush(); 
+                return redirect()->route('login')->with('error', 'No tienes acceso al test');
+            }
 
         }
 
