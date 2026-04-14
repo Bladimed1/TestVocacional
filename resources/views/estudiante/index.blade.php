@@ -16,6 +16,10 @@
                     <a href="{{ route('estudiante.test') }}" class="btn btn-verde-uth fw-bold px-4 py-3 rounded-pill d-inline-flex align-items-center gap-2 text-decoration-none shadow-sm transition-hover fs-5">
                         <i class="bi bi-ui-checks-grid"></i> COMENZAR TEST VOCACIONAL
                     </a>
+                    @else
+                    <div class="fs-3 fw-bold" style="color: var(--verde-uth);">
+                        <i class="bi bi-ui-checks"></i> YA HAS TERMINADO EL TEST
+                    </div>
                     @endif
                 </div>
                 <div class="d-none d-lg-block text-center pe-4">
