@@ -106,7 +106,7 @@
                 <p class="fw-bold text-dark mb-0 fs-6">Desarrollo y Gestión de Software.</p>
             </div>
             <div class="card-body text-center p-4">
-                <img src="{{ asset('img/grafica-ejemplo-1.png') }}" class="img-fluid mb-3" alt="Gráfica Software">
+                <div id="grafica_software" style="width: 100%; height: 250px;"></div>
                 <div class="d-flex justify-content-center gap-3 fs-3 text-success">
                     <i class="bi bi-database"></i>
                     <i class="bi bi-code-slash"></i>
@@ -123,7 +123,7 @@
                 <p class="fw-bold text-dark mb-0 fs-6">Entornos Virtuales y Negocios Digitales.</p>
             </div>
             <div class="card-body text-center p-4">
-                <img src="{{ asset('img/grafica-ejemplo-2.png') }}" class="img-fluid mb-3" alt="Gráfica Entornos">
+                <div id="grafica_entornos" style="width: 100%; height: 250px;"></div>
                 <div class="d-flex justify-content-center gap-3 fs-3 text-success">
                     <i class="bi bi-headset-vr"></i>
                     <i class="bi bi-box"></i>
@@ -140,7 +140,7 @@
                 <p class="fw-bold text-dark mb-0 fs-6">Redes Inteligentes y Ciberseguridad.</p>
             </div>
             <div class="card-body text-center p-4">
-                <img src="{{ asset('img/grafica-ejemplo-3.png') }}" class="img-fluid mb-3" alt="Gráfica Redes">
+                <div id="grafica_redes" style="width: 100%; height: 250px;"></div>
                 <div class="d-flex justify-content-center gap-3 fs-3 text-success">
                     <i class="bi bi-lock-fill"></i>
                     <i class="bi bi-diagram-3"></i>
@@ -150,4 +150,65 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(dibujarGraficas);
+
+        function dibujarGraficas() {
+            var opciones = {
+                is3D: true,
+                legend: 'bottom',
+                chartArea: {width: '90%', height: '75%'},
+                backgroundColor: 'transparent'
+            };
+
+            // ==========================================
+            // 1. GRÁFICA DE SOFTWARE
+            // ==========================================
+            var dataSoftware = new google.visualization.DataTable();
+            dataSoftware.addColumn('string', 'Grupo');
+            dataSoftware.addColumn('number', 'Estudiantes');
+            dataSoftware.addRows([
+                @foreach($datosSoftware as $grupo => $total)
+                    ['Grupo {{ $grupo }}', {{ $total }}],
+                @endforeach
+            ]);
+            
+            var chartSoftware = new google.visualization.PieChart(document.getElementById('grafica_software'));
+            chartSoftware.draw(dataSoftware, opciones);
+
+            // ==========================================
+            // 2. GRÁFICA DE ENTORNOS
+            // ==========================================
+            var dataEntornos = new google.visualization.DataTable();
+            dataEntornos.addColumn('string', 'Grupo');
+            dataEntornos.addColumn('number', 'Estudiantes');
+            dataEntornos.addRows([
+                @foreach($datosEntornos as $grupo => $total)
+                    ['Grupo {{ $grupo }}', {{ $total }}],
+                @endforeach
+            ]);
+            
+            var chartEntornos = new google.visualization.PieChart(document.getElementById('grafica_entornos'));
+            chartEntornos.draw(dataEntornos, opciones);
+
+            // ==========================================
+            // 3. GRÁFICA DE REDES
+            // ==========================================
+            var dataRedes = new google.visualization.DataTable();
+            dataRedes.addColumn('string', 'Grupo');
+            dataRedes.addColumn('number', 'Estudiantes');
+            dataRedes.addRows([
+                @foreach($datosRedes as $grupo => $total)
+                    ['Grupo {{ $grupo }}', {{ $total }}],
+                @endforeach
+            ]);
+            
+            var chartRedes = new google.visualization.PieChart(document.getElementById('grafica_redes'));
+            chartRedes.draw(dataRedes, opciones);
+        }
+        window.addEventListener('resize', dibujarGraficas);
+    </script>
 @endsection

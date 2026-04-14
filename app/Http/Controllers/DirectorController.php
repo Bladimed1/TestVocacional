@@ -12,7 +12,28 @@ class DirectorController extends Controller
 {
     public function index()
     {
-        return view('director.index');
+        // 1. Datos para la gráfica de Desarrollo de Software
+        $datosSoftware = Estudiante::where('id_especialidad', 1)
+            ->select('grupo', DB::raw('count(*) as total'))
+            ->groupBy('grupo')
+            ->pluck('total', 'grupo')
+            ->toArray();
+
+        // 2. Datos para Entornos Virtuales
+        $datosEntornos = Estudiante::where('id_especialidad', 3)
+            ->select('grupo', DB::raw('count(*) as total'))
+            ->groupBy('grupo')
+            ->pluck('total', 'grupo')
+            ->toArray();
+
+        // 3. Datos para Redes
+        $datosRedes = Estudiante::where('id_especialidad', 2)
+            ->select('grupo', DB::raw('count(*) as total'))
+            ->groupBy('grupo')
+            ->pluck('total', 'grupo')
+            ->toArray();
+
+        return view('director.index', compact('datosSoftware', 'datosEntornos', 'datosRedes'));
     }
 
     public function estadisticas()

@@ -150,6 +150,35 @@ class EstudianteController extends Controller
         });
     }
 
+    public function verResultados()
+    {
+        $email = session('email');
+        $estudiante = Estudiante::where('email', $email)->first();
+
+        if (!$estudiante || $estudiante->intentos < 2) {
+            return redirect()->route('estudiante.index')
+                ->with('error', 'Aún tienes intentos disponibles. ¡Termina tus evaluaciones!');
+        }
+
+        $resultados = [
+            'Desarrollo de Software' => 0,
+            'Redes y Ciberseguridad' => 0,
+            'Entornos Virtuales'     => 0
+        ];
+
+        if ($estudiante->id_especialidad == 1) {
+            $resultados['Desarrollo de Software'] = 100;
+        } elseif ($estudiante->id_especialidad == 2) {
+            $resultados['Redes y Ciberseguridad'] = 100;
+        } elseif ($estudiante->id_especialidad == 3) {
+            $resultados['Entornos Virtuales'] = 100;
+        }
+
+        $intentos = $estudiante->intentos;
+
+        return view('estudiante.resultados', compact('resultados', 'intentos'));
+    }
+
     public function infoDesarrollo()
     {
         $seccion = collect($this->getSecciones())->firstWhere('id', 1);
