@@ -24,7 +24,7 @@
                 <h2 class="fw-bolder text-dark mb-3">Acceso Restringido</h2>
                 <p class="text-secondary fs-5 mb-5 lh-base">
                     Tu estatus actual en el sistema es <strong class="text-danger">Inactivo</strong>. <br><br>
-                    Por favor, acude a la dirección de la carrera en la universidad para regularizar tu situación y reactivar tu cuenta.
+                    Por favor, acude a la dirección de la carrera en la universidad para regularizar tu situación.
                 </p>
                 
                 <a href="{{ route('login') }}" class="btn btn-verde-uth btn-lg rounded-pill fw-bold px-5 shadow-sm transition-hover">

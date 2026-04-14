@@ -36,6 +36,7 @@ Route::get('/estudiante/infoDesarrollo', [EstudianteController::class, 'infoDesa
 Route::get('/estudiante/infoRedes', [EstudianteController::class, 'infoRedes'])->name('estudiante.infoRedes');
 Route::get('/estudiante/infoEntornos', [EstudianteController::class, 'infoEntornos'])->name('estudiante.infoEntornos');
 
+Route::get('/error', [LoginController::class, 'error'])->name('error');
 
 
 

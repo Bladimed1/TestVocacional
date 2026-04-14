@@ -86,7 +86,7 @@ class LoginController extends Controller
                 
             default:
             session()->flush();
-            return redirect()->route('login')->with('error', 'Rol no reconocido');
+            return redirect()->route('error');
             }
 
         } else {
@@ -113,11 +113,15 @@ class LoginController extends Controller
 
             } else {
                 session()->flush(); 
-                return redirect()->route('login')->with('error', 'No tienes acceso al test');
+                return redirect()->route('error');
             }
 
         }
 
+    }
+
+    public function error() {
+        return view('error');
     }
  
     public function logout () {
