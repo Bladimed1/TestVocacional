@@ -58,8 +58,6 @@
                                 style="font-size: 0.85rem; letter-spacing: 0.5px;">ESTATUS</th>
                             <th scope="col" class="py-3 text-secondary"
                                 style="font-size: 0.85rem; letter-spacing: 0.5px;">ESPECIALIDAD SUGERIDA</th>
-                            <th scope="col" class="pe-4 py-3 text-end text-secondary"
-                                style="font-size: 0.85rem; letter-spacing: 0.5px;">ACCIONES</th>
                         </tr>
                     </thead>
 
@@ -79,19 +77,14 @@
                                 <td>
                                     @if($alumno->especialidad)
                                         <span
-                                            class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-2 py-1">
+                                            class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-5 py-1">
                                             <i class="bi bi-award-fill me-1"></i> {{ $alumno->especialidad->nombre }}
                                         </span>
                                     @else
-                                        <span class="badge bg-secondary bg-opacity-10 text-secondary border px-2 py-1">
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary border px-5 py-1">
                                             <i class="bi bi-clock-history me-1"></i> Pendiente
                                         </span>
                                     @endif
-                                </td>
-                                <td class="pe-4 text-end">
-                                    <button class="btn btn-sm btn-light border" title="Ver detalle">
-                                        <i class="bi bi-three-dots-vertical text-muted"></i>
-                                    </button>
                                 </td>
                             </tr>
                         @empty
