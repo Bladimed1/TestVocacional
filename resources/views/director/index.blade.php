@@ -49,13 +49,13 @@
                 
                 <ul class="nav nav-pills justify-content-center gap-2" id="gruposTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active fw-bold px-4 rounded-pill shadow-sm" id="tab-3a" data-bs-toggle="pill" data-bs-target="#content-3a" type="button" role="tab">Grupo 3A</button>
+                        <button class="nav-link active fw-bold px-4 rounded-pill shadow-sm" id="tab-3a" data-bs-toggle="pill" data-bs-target="#content-3a" type="button" role="tab">Grupo A</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link fw-bold px-4 rounded-pill shadow-sm" id="tab-3b" data-bs-toggle="pill" data-bs-target="#content-3b" type="button" role="tab">Grupo 3B</button>
+                        <button class="nav-link fw-bold px-4 rounded-pill shadow-sm" id="tab-3b" data-bs-toggle="pill" data-bs-target="#content-3b" type="button" role="tab">Grupo B</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link fw-bold px-4 rounded-pill shadow-sm" id="tab-3c" data-bs-toggle="pill" data-bs-target="#content-3c" type="button" role="tab">Grupo 3C</button>
+                        <button class="nav-link fw-bold px-4 rounded-pill shadow-sm" id="tab-3c" data-bs-toggle="pill" data-bs-target="#content-3c" type="button" role="tab">Grupo C</button>
                     </li>
                 </ul>
             </div>
@@ -65,25 +65,25 @@
                     
                     <div class="tab-pane fade show active" id="content-3a" role="tabpanel">
                         <i class="bi bi-people-fill text-success opacity-50 mb-2 d-block" style="font-size: 2.5rem;"></i>
-                        <p class="text-secondary fw-semibold mb-4">Gestione y evalúe la compatibilidad vocacional de los alumnos del <strong class="text-dark">Grupo 3A</strong>.</p>
-                        <a href="{{ route('director.grupo', '3A') }}" class="btn btn-outline-success fw-bold px-4 py-2 rounded-3">
-                            VER ALUMNOS DEL 3A <i class="bi bi-arrow-right ms-1"></i>
+                        <p class="text-secondary fw-semibold mb-4">Gestione y evalúe la compatibilidad vocacional de los alumnos del <strong class="text-dark">Grupo A</strong>.</p>
+                        <a href="{{ route('director.grupo', 'A') }}" class="btn btn-outline-success fw-bold px-4 py-2 rounded-3">
+                            VER ALUMNOS DEL GRUPO A <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                     </div>
 
                     <div class="tab-pane fade" id="content-3b" role="tabpanel">
                         <i class="bi bi-people-fill text-success opacity-50 mb-2 d-block" style="font-size: 2.5rem;"></i>
-                        <p class="text-secondary fw-semibold mb-4">Gestione y evalúe la compatibilidad vocacional de los alumnos del <strong class="text-dark">Grupo 3B</strong>.</p>
-                        <a href="{{ route('director.grupo', '3B') }}" class="btn btn-outline-success fw-bold px-4 py-2 rounded-3">
-                            VER ALUMNOS DEL 3B <i class="bi bi-arrow-right ms-1"></i>
+                        <p class="text-secondary fw-semibold mb-4">Gestione y evalúe la compatibilidad vocacional de los alumnos del <strong class="text-dark">Grupo B</strong>.</p>
+                        <a href="{{ route('director.grupo', 'B') }}" class="btn btn-outline-success fw-bold px-4 py-2 rounded-3">
+                            VER ALUMNOS DEL GRUPO B <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                     </div>
 
                     <div class="tab-pane fade" id="content-3c" role="tabpanel">
                         <i class="bi bi-people-fill text-success opacity-50 mb-2 d-block" style="font-size: 2.5rem;"></i>
-                        <p class="text-secondary fw-semibold mb-4">Gestione y evalúe la compatibilidad vocacional de los alumnos del <strong class="text-dark">Grupo 3C</strong>.</p>
-                        <a href="{{ route('director.grupo', '3C') }}" class="btn btn-outline-success fw-bold px-4 py-2 rounded-3">
-                            VER ALUMNOS DEL 3C <i class="bi bi-arrow-right ms-1"></i>
+                        <p class="text-secondary fw-semibold mb-4">Gestione y evalúe la compatibilidad vocacional de los alumnos del <strong class="text-dark">Grupo C</strong>.</p>
+                        <a href="{{ route('director.grupo', 'C') }}" class="btn btn-outline-success fw-bold px-4 py-2 rounded-3">
+                            VER ALUMNOS DEL GRUPO C <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                     </div>
 

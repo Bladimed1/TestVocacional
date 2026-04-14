@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\Models\Especialidad;
+use App\Models\Estudiante;
 
 class DirectorController extends Controller
 {
@@ -62,7 +63,10 @@ class DirectorController extends Controller
     }
     public function grupo($grupo)
     {
-        return view('director.grupo', compact('grupo'));
+        $estudiantes = Estudiante::with('especialidad')
+            ->where('grupo', $grupo)
+            ->get();
+        return view('director.grupo', compact('grupo', 'estudiantes'));
     }
 
     public function alumnos()
