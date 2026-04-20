@@ -21,7 +21,9 @@ return new class extends Migration
             $table->foreign('id_especialidad')->references('id')->on('especialidades')->onDelete('cascade');
 
             // Puntaje obtenido en el test (opcional pero muy útil)
-            $table->integer('puntaje')->nullable();
+            $table->integer('puntajeSoftware')->nullable();
+            $table->integer('puntajeEntornos')->nullable();
+            $table->integer('puntajeRedes')->nullable();
 
             // Fecha en que se hizo el test (Laravel ya guarda created_at, pero esto es más claro)
             $table->timestamp('fecha_aplicacion')->useCurrent();

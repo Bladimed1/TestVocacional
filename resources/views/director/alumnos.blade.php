@@ -104,9 +104,6 @@
 
                                 <td class="pe-4 text-end">
                                     <div class="d-flex justify-content-end gap-1">
-                                        <button class="btn btn-sm btn-light border text-secondary shadow-sm" title="Ver perfil">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
 
                                         <form action="{{ route('director.alumnos.estatus', $alumno->matricula) }}" method="POST" class="m-0">
                                             @csrf
