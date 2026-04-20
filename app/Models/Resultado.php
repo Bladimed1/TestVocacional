@@ -9,6 +9,8 @@ class Resultado extends Model
     protected $fillable = [
     'id_estudiante',
     'id_especialidad',
-    'puntaje'
+    'puntajeSoftware',
+    'puntajeRedes',
+    'puntajeEntornos'
     ];
 }

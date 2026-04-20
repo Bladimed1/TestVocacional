@@ -57,7 +57,7 @@ class DirectorController extends Controller
                 $resultados['software'] = (int) $total;
             } elseif (str_contains($nombre, 'redes')) {
                 $resultados['redes'] = (int) $total;
-            } elseif (str_contains($nombre, 'virtuales')) {
+            } elseif (str_contains($nombre, 'entornos')) {
                 $resultados['entornos'] = (int) $total;
             }
         }

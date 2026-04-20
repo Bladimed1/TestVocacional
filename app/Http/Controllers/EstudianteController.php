@@ -107,6 +107,10 @@ class EstudianteController extends Controller
         $valorMax = max($resultados);
         $especialidadGanadora = array_search($valorMax, $resultados);
 
+        $puntajeSoftware = $resultados["software"];
+        $puntajeRedes = $resultados["redes"];
+        $puntajeEntornos = $resultados["entornos"];
+
         if (array_key_exists($especialidadGanadora, $especialidades)) {
             $id_especialidad = $especialidades[$especialidadGanadora];
 
@@ -127,7 +131,9 @@ class EstudianteController extends Controller
                 [   
                     'id_estudiante'  => $id_estudiante,
                     'id_especialidad' => $id_especialidad,
-                    'puntaje'         => $valorMax
+                    'puntajeSoftware' => $puntajeSoftware,
+                    'puntajeRedes' => $puntajeRedes,
+                    'puntajeEntornos' => $puntajeEntornos
                 ]
             );
 
@@ -149,33 +155,35 @@ class EstudianteController extends Controller
     }
 
     public function verResultados()
-    {
-        $email = session('email');
-        $estudiante = Estudiante::where('email', $email)->first();
+{
+    $email = session('email');
+    $estudiante = Estudiante::where('email', $email)->first();
 
-        if (!$estudiante || $estudiante->intentos < 2) {
-            return redirect()->route('estudiante.index')
-                ->with('error', 'Aún tienes intentos disponibles. ¡Termina tus evaluaciones!');
-        }
-
-        $resultados = [
-            'Desarrollo de Software' => 0,
-            'Redes y Ciberseguridad' => 0,
-            'Entornos Virtuales'     => 0
-        ];
-
-        if ($estudiante->id_especialidad == 1) {
-            $resultados['Desarrollo de Software'] = 100;
-        } elseif ($estudiante->id_especialidad == 2) {
-            $resultados['Redes y Ciberseguridad'] = 100;
-        } elseif ($estudiante->id_especialidad == 3) {
-            $resultados['Entornos Virtuales'] = 100;
-        }
-
-        $intentos = $estudiante->intentos;
-
-        return view('estudiante.resultados', compact('resultados', 'intentos'));
+    // 1. Validar que exista el estudiante y tenga los intentos completos
+    if (!$estudiante || $estudiante->intentos < 2) {
+        return redirect()->route('estudiante.index')
+            ->with('error', 'Aún tienes intentos disponibles. ¡Termina tus evaluaciones!');
     }
+
+    // 2. Buscar resultados DESPUÉS de validar
+    $resultado = Resultado::where('id_estudiante', $estudiante->id)->first();
+
+    // 3. Validar que existan resultados antes de leer propiedades
+    if (!$resultado) {
+        return redirect()->route('estudiante.index')
+            ->with('error', 'No se encontraron resultados registrados.');
+    }
+
+    $resultados = [
+        'software' => $resultado->puntajeSoftware,
+        'redes'    => $resultado->puntajeRedes,
+        'entornos' => $resultado->puntajeEntornos
+    ];
+
+    $intentos = $estudiante->intentos;
+
+    return view('estudiante.resultados', compact('resultados', 'intentos'));
+}
 
     public function infoDesarrollo()
     {   
